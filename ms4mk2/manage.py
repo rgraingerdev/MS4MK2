@@ -2,7 +2,16 @@
 """Django's command-line utility for administrative tasks."""
 import os
 import sys
+import configparser
 
+config = configparser.ConfigParser()
+config.read('config.ini')
+
+if 'database' in config:
+    for key, value in config.items():
+        os.environ[key] = value
+else:
+    print("Error:'database' section not found in config.ini")
 
 def main():
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'ms4mk2.settings')
@@ -15,7 +24,6 @@ def main():
             "forget to activate a virtual environment?"
         ) from exc
     execute_from_command_line(sys.argv)
-
 
 if __name__ == '__main__':
     main()
