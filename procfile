@@ -1,1 +1,1 @@
-web: gunicorn ms4mk2.wsgiß
+web: gunicorn ms4mk2.wsgi
